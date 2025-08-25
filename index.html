@@ -1,329 +1,270 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>$MEOWBET - The Most Memeable Casino Cat</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Caveat:wght@700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Inter', Arial, sans-serif;
-            background: linear-gradient(135deg, #181824 0%, #23243a 100%);
-            color: #fff;
-            margin: 0;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        .hero {
-            min-height: 80vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 60px 0 40px 0;
-            position: relative;
-        }
-        .hero-logo {
-            width: 160px;
-            height: 160px;
-            border-radius: 50%;
-            margin-bottom: 30px;
-            border: 4px solid #FFD700;
-            box-shadow: 0 0 40px #FFD70044;
-            animation: hero-glow 2.5s infinite alternate;
-        }
-        @keyframes hero-glow {
-            0% { box-shadow: 0 0 40px #FFD70044; }
-            100% { box-shadow: 0 0 60px #FFD700cc; }
-        }
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 10px;
-            background: linear-gradient(45deg, #FFD700, #FFA500);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 900;
-            letter-spacing: 2px;
-            animation: fadeInDown 1.2s;
-        }
-        @keyframes fadeInDown {
-            0% { opacity: 0; transform: translateY(-40px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-        .hero h2 {
-            font-size: 1.5rem;
-            color: #ffe082;
-            font-weight: 400;
-            margin-bottom: 20px;
-            animation: fadeInDown 1.5s;
-        }
-        .hero p {
-            font-size: 1.1rem;
-            color: #e0e0e0;
-            max-width: 700px;
-            margin: 0 auto 30px auto;
-            animation: fadeInDown 1.8s;
-        }
-        .contract-info {
-            background: #23243a;
-            padding: 18px 20px;
-            border-radius: 10px;
-            margin: 25px 0 30px 0;
-            border: 1px solid #FFD70044;
-            color: #FFD700;
-            font-size: 1.1rem;
-            font-family: 'Fira Code', monospace;
-            word-break: break-all;
-            animation: fadeInDown 2s;
-        }
-        .cta-buttons {
-            display: flex;
-            gap: 18px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 10px;
-        }
-        .btn {
-            padding: 14px 32px;
-            background: linear-gradient(90deg, #FFD700 60%, #FFA500 100%);
-            border: none;
-            border-radius: 25px;
-            color: #23243a;
-            font-weight: 700;
-            text-decoration: none;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 2px 10px #FFD70033;
-            position: relative;
-            overflow: hidden;
-        }
-        .btn:after {
-            content: '';
-            position: absolute;
-            left: -60%;
-            top: 0;
-            width: 60%;
-            height: 100%;
-            background: linear-gradient(120deg, transparent, #fffbe0 60%, transparent 100%);
-            opacity: 0.5;
-            transform: skewX(-20deg);
-            transition: left 0.5s;
-        }
-        .btn:hover:after {
-            left: 120%;
-        }
-        .btn:hover {
-            background: linear-gradient(90deg, #FFA500 60%, #FFD700 100%);
-            transform: translateY(-2px) scale(1.04);
-            box-shadow: 0 4px 18px #FFD70066;
-        }
-        .meme-section {
-            padding: 60px 0 40px 0;
-            background: #181824;
-        }
-        .section-title {
-            text-align: center;
-            font-size: 2.3rem;
-            margin-bottom: 30px;
-            color: #FFD700;
-            font-weight: 800;
-            letter-spacing: 1px;
-        }
-        .meme-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 28px;
-        }
-        .meme-item {
-            background: #23243a;
-            border-radius: 18px;
-            box-shadow: 0 4px 18px #FFD70022, 0 1.5px 6px #0008;
-            border: 2px solid #FFD70044;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 340px;
-            position: relative;
-            opacity: 0;
-            transform: translateY(40px) scale(0.98);
-            animation: cardIn 0.8s forwards;
-        }
-        .meme-item:nth-child(1) { animation-delay: 0.1s; }
-        .meme-item:nth-child(2) { animation-delay: 0.2s; }
-        .meme-item:nth-child(3) { animation-delay: 0.3s; }
-        .meme-item:nth-child(4) { animation-delay: 0.4s; }
-        .meme-item:nth-child(5) { animation-delay: 0.5s; }
-        .meme-item:nth-child(6) { animation-delay: 0.6s; }
-        .meme-item:nth-child(7) { animation-delay: 0.7s; }
-        .meme-item:nth-child(8) { animation-delay: 0.8s; }
-        .meme-item:nth-child(9) { animation-delay: 0.9s; }
-        .meme-item:nth-child(10) { animation-delay: 1.0s; }
-        .meme-item:nth-child(11) { animation-delay: 1.1s; }
-        .meme-item:nth-child(12) { animation-delay: 1.2s; }
-        @keyframes cardIn {
-            0% { opacity: 0; transform: translateY(40px) scale(0.98); }
-            100% { opacity: 1; transform: translateY(0) scale(1); }
-        }
-        .meme-item:hover {
-            box-shadow: 0 8px 32px #FFD70066, 0 2px 8px #000a;
-            transform: translateY(-6px) scale(1.03);
-        }
-        .meme-item img {
-            width: 100%;
-            height: 320px;
-            object-fit: contain;
-            background: #181824;
-            border-bottom: 1.5px solid #FFD70044;
-            transition: transform 0.3s;
-        }
-        .meme-item:hover img {
-            transform: scale(1.05) rotate(-2deg);
-        }
-        .meme-quote {
-            font-family: 'Caveat', cursive, 'Inter', sans-serif;
-            font-size: 1.15rem;
-            color: #FFD700;
-            background: #23243a;
-            padding: 18px 16px 12px 16px;
-            width: 100%;
-            text-align: center;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            min-height: 60px;
-        }
-        .footer {
-            background: #23243a;
-            padding: 40px 0 20px 0;
-            text-align: center;
-            color: #FFD700;
-            font-size: 1.1rem;
-            border-top: 1.5px solid #FFD70044;
-        }
-        /* Sparkle animation */
-        .sparkle {
-            position: absolute;
-            width: 18px;
-            height: 18px;
-            background: radial-gradient(circle, #fffbe0 60%, #FFD700 100%, transparent 80%);
-            border-radius: 50%;
-            opacity: 0.7;
-            animation: sparkle 2.5s infinite linear;
-        }
-        .sparkle.s1 { left: 20vw; top: 30vh; animation-delay: 0.5s; }
-        .sparkle.s2 { left: 70vw; top: 15vh; animation-delay: 1.2s; }
-        .sparkle.s3 { left: 60vw; top: 60vh; animation-delay: 2s; }
-        @keyframes sparkle {
-            0% { opacity: 0.7; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.3); }
-            100% { opacity: 0.7; transform: scale(1); }
-        }
-        .chip-bg {
-            position: fixed;
-            left: 50%;
-            top: 50%;
-            width: 340px;
-            height: 340px;
-            z-index: 0;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            opacity: 0.18;
-            animation: chip-spin 18s linear infinite, chip-float 6s ease-in-out infinite;
-        }
-        @keyframes chip-spin {
-            0% { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
-            100% { transform: translate(-50%, -50%) rotate(360deg) scale(1); }
-        }
-        @keyframes chip-float {
-            0%, 100% { filter: blur(0px); }
-            50% { filter: blur(2.5px); }
-        }
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.1rem; }
-            .hero-logo { width: 100px; height: 100px; }
-            .meme-grid { grid-template-columns: 1fr; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MeowBet - The Meme Casino Cat</title>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+  /* Card flip effect */
+  .card-container {
+    perspective: 1000px;
+  }
+  .card {
+    width: 100%;
+    height: 260px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(.77,0,.18,1);
+    cursor: pointer;
+  }
+  .card.flipped {
+    transform: rotateY(180deg);
+  }
+  .card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    background: #222;
+    color: #FFD700;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px #000a;
+  }
+  .card-front {
+    z-index: 2;
+  }
+  .card-back {
+    transform: rotateY(180deg);
+    background: #111;
+    padding: 0;
+  }
+  .card-back img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+  body {
+    margin: 0;
+    font-family: 'Press Start 2P', cursive;
+    color: #FFD700;
+    overflow-x: hidden;
+    background: linear-gradient(rgba(20,20,20,0.88),rgba(20,20,20,0.88)), url('img/12.jpg') center center / cover no-repeat fixed;
+  }
+
+  a { text-decoration: none; color: inherit; }
+  button { cursor: pointer; font-family: inherit; }
+
+  /* ===== Hero ===== */
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero h1 { font-size: 3rem; margin-bottom: 0.5rem; }
+  .hero p { font-size: 1.2rem; margin-bottom: 2rem; }
+  .hero button {
+    padding: 15px 30px;
+    margin: 5px;
+    border: none;
+    border-radius: 12px;
+    background-color: #FFD700;
+    color: #1E1E1E;
+    font-weight: bold;
+    transition: transform 0.2s;
+  }
+  .hero button:hover { transform: scale(1.1); }
+
+  /* ===== Animated Falling Logos ===== */
+  .falling-logo {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    top: -60px;
+    animation: fall 6s linear infinite;
+    pointer-events: none;
+    z-index: 10;
+  }
+  .falling-logo img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    box-shadow: 0 0 12px #FFD700;
+    background: #222;
+    object-fit: cover;
+  }
+  @keyframes fall { 0% { transform: translateY(0) rotate(0deg); } 100% { transform: translateY(110vh) rotate(360deg); } }
+
+  /* ===== Meme Vaults / Slot Machine ===== */
+  .vaults {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 50px 20px;
+  }
+  .vault {
+    border: 2px solid #FFD700;
+    border-radius: 16px;
+    overflow: hidden;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+  }
+  .vault img {
+    width: 100%;
+    display: block;
+    border-bottom: 2px solid #FFD700;
+    transition: transform 0.3s;
+  }
+  .vault h3 {
+    margin: 10px 0;
+    font-size: 1rem;
+  }
+
+  /* Spin animation */
+  .spinning { animation: spin 0.5s linear infinite; }
+  @keyframes spin { 0% { transform: translateY(0); } 100% { transform: translateY(20px); } }
+
+  /* ===== Footer ===== */
+  footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #111;
+    font-size: 0.8rem;
+    color: #888;
+  }
+</style>
 </head>
 <body>
-    <img src="img/ship.png" alt="3D Casino Chip" class="chip-bg">
-    <div class="sparkle s1"></div>
-    <div class="sparkle s2"></div>
-    <div class="sparkle s3"></div>
-    <section class="hero">
-        <div class="container">
-            <img src="img/logo.jpg" alt="MeowBet Logo" class="hero-logo">
-            <h1>$MEOWBET</h1>
-            <h2>the most memeable casino cat on the internet</h2>
-            <p>MeowBet, the most viral casino cat on the internet, lives forever as a cat memecoin on the Solana blockchain. MeowBet is backed by a thriving community of degens who love casino games and cat memes. Known as the infinity casino meme, "there's always a meowbet for that."</p>
-            <!--<div class="contract-info">CA: 5mbK36SZ7J19An8jFochhQS4of8g6BwUjbeCSxBSoWdp</div>-->
-            <div class="contract-info">CA: UNKNOWN UNTIL LAUNCH</div>
-            <div class="cta-buttons">
-                <a href="#" class="btn">BUY HERE</a>
-                <a href="#memes" class="btn">FIND MEOWBET MEMES</a>
-            </div>
-        </div>
-    </section>
-    <section id="memes" class="meme-section">
-        <div class="container">
-            <h2 class="section-title">MEOWBET MEMES</h2>
-            <div class="meme-grid" id="memeGrid"></div>
-        </div>
-    </section>
-    <footer class="footer">
-        ©2025 $MEOWBET, ALL RIGHTS RESERVED.
-    </footer>
-    <script>
-    const memeFiles = [
-        'WhatsApp Image 2025-08-25 à 05.35.13_3831410a.jpg',
-        'WhatsApp Image 2025-08-25 à 05.35.13_697f33c2.jpg',
-        'WhatsApp Image 2025-08-25 à 05.35.14_0162370c.jpg',
-        'WhatsApp Image 2025-08-25 à 05.35.14_0aa8ba59.jpg',
-        'WhatsApp Image 2025-08-25 à 05.35.14_65e76a5a.jpg',
-        'WhatsApp Image 2025-08-25 à 05.35.14_682d69fa.jpg',
-        'WhatsApp Image 2025-08-25 à 05.35.14_a700e269.jpg',
-        'WhatsApp Image 2025-08-25 à 05.35.14_d38258c6.jpg',
-        'WhatsApp Image 2025-08-25 à 05.35.14_db375fe4.jpg',
-        'WhatsApp Image 2025-08-25 à 05.35.15_0fef5b01.jpg',
-        'WhatsApp Image 2025-08-25 à 05.35.15_76912a7f.jpg',
-        'WhatsApp Image 2025-08-25 à 05.35.15_de8eda13.jpg'
-    ];
-    const memeQuotes = [
-        'Meowbet – 9 Lives, 1 Chance to Moon',
-        'Spin To Win Kitty !',
-        'Feeling lucky, kitty?',
-        'Jackpot pawsibilities!',
-        'Meowbet – Sit Back, Cash In',
-        'Bet Big, Land on Your Paws',
-        'Nine lives, nine wins!',
-        'Feline unlucky today?',
-        'Meow or never!',
-        'Meoatic',
-        'Let the cat games begin!',
-        'Feline lucky today?'
-    ];
-    function loadMemes() {
-        const memeGrid = document.getElementById('memeGrid');
-        memeFiles.forEach((file, index) => {
-            const memeItem = document.createElement('div');
-            memeItem.className = 'meme-item';
-            const quote = memeQuotes[index % memeQuotes.length];
-            memeItem.innerHTML = `
-                <img src="img/${file}" alt="MeowBet Meme ${index + 1}" onerror="this.style.display='none'">
-                <div class="meme-quote">${quote}</div>
-            `;
-            memeGrid.appendChild(memeItem);
-        });
-    }
-    document.addEventListener('DOMContentLoaded', loadMemes);
-    </script>
+
+
+<!-- ===== Hero Section ===== -->
+<section class="hero">
+  <img src="img/LOGO.jpg" alt="MeowBet Logo" style="width:160px; height:auto; margin-bottom: 1.5rem; border-radius: 50%; box-shadow: 0 0 24px #FFD700; background: #222;" />
+  <h1>MeowBet</h1>
+  <p>The most memeable casino cat on the internet</p>
+  <div>
+    <button onclick="document.querySelector('.vaults').scrollIntoView({behavior: 'smooth'});">Join the Fun</button>
+    <button onclick="window.open('https://pump.fun/', '_blank');">Buy MEOWBET</button>
+  </div>
+  <!-- ===== Contact & Socials (moved below buttons) ===== -->
+  <div style="width:100%;text-align:center;margin-top:1.5em;margin-bottom:0.5em;">
+    <span style="font-size:1.1rem;color:#FFD700;text-shadow:0 2px 8px #000a;">CA: <a href="mailto:contact@meowbet.com" style="color:#FFD700;text-decoration:underline;"></a></span>
+    <div style="margin-top:0.7em;">
+      <a href="https://twitter.com/" target="_blank" style="display:inline-block;margin:0 0.5em;"><button style="background:#1DA1F2;color:#fff;font-weight:bold;padding:0.6em 1.2em;border-radius:8px;border:none;font-size:1rem;cursor:pointer;">Twitter</button></a>
+      <a href="https://t.me/" target="_blank" style="display:inline-block;margin:0 0.5em;"><button style="background:#229ED9;color:#fff;font-weight:bold;padding:0.6em 1.2em;border-radius:8px;border:none;font-size:1rem;cursor:pointer;">Telegram</button></a>
+    </div>
+  </div>
+  <!-- Animated coins -->
+  <div class="falling-logo" style="left:10%; animation-duration:5s;"><img src="img/LOGO.jpg" alt="MeowBet Logo" /></div>
+  <div class="falling-logo" style="left:50%; animation-duration:6s;"><img src="img/LOGO.jpg" alt="MeowBet Logo" /></div>
+  <div class="falling-logo" style="left:80%; animation-duration:4s;"><img src="img/LOGO.jpg" alt="MeowBet Logo" /></div>
+</section>
+
+<!-- ===== Meme Vaults ===== -->
+<section class="vaults">
+  <div style="grid-column: 1/-1; text-align:center; margin-bottom:0.5em; margin-top:0.5em;">
+    <h2 style="font-size:2rem; color:#FFD700; text-shadow:0 2px 12px #000b; margin-bottom:0.2em;">Memes Roulette</h2>
+    <div style="font-size:1.1rem; color:#fff; text-shadow:0 2px 8px #000a; margin-bottom:1.2em;">Click to reveal</div>
+  </div>
+  <div class="vault card-container">
+    <div class="card">
+      <div class="card-face card-front"><h3>Meow Casino</h3></div>
+      <div class="card-face card-back"><img src="img/1.jpg" alt="Meow Casino"></div>
+    </div>
+  </div>
+  <div class="vault card-container">
+    <div class="card">
+      <div class="card-face card-front"><h3>Cat Dealer</h3></div>
+      <div class="card-face card-back"><img src="img/2.jpg" alt="Cat Dealer"></div>
+    </div>
+  </div>
+  <div class="vault card-container">
+    <div class="card">
+      <div class="card-face card-front"><h3>Lucky Cat</h3></div>
+      <div class="card-face card-back"><img src="img/3.jpg" alt="Lucky Cat"></div>
+    </div>
+  </div>
+  <div class="vault card-container">
+    <div class="card">
+      <div class="card-face card-front"><h3>Jackpot Meow</h3></div>
+      <div class="card-face card-back"><img src="img/4.jpg" alt="Jackpot Meow"></div>
+    </div>
+  </div>
+  <div class="vault card-container">
+    <div class="card">
+      <div class="card-face card-front"><h3>Poker Face</h3></div>
+      <div class="card-face card-back"><img src="img/5.jpg" alt="Poker Face"></div>
+    </div>
+  </div>
+  <div class="vault card-container">
+    <div class="card">
+      <div class="card-face card-front"><h3>Cat Chips</h3></div>
+      <div class="card-face card-back"><img src="img/6.jpg" alt="Cat Chips"></div>
+    </div>
+  </div>
+  <div class="vault card-container">
+    <div class="card">
+      <div class="card-face card-front"><h3>Spin Winner</h3></div>
+      <div class="card-face card-back"><img src="img/7.jpg" alt="Spin Winner"></div>
+    </div>
+  </div>
+  <div class="vault card-container">
+    <div class="card">
+      <div class="card-face card-front"><h3>Meowbet Army</h3></div>
+      <div class="card-face card-back"><img src="img/8.jpg" alt="Meowbet Army"></div>
+    </div>
+  </div>
+  <div class="vault card-container">
+    <div class="card">
+      <div class="card-face card-front"><h3>Cat Meme</h3></div>
+      <div class="card-face card-back"><img src="img/9.jpg" alt="Cat Meme"></div>
+    </div>
+  </div>
+  <div class="vault card-container">
+    <div class="card">
+      <div class="card-face card-front"><h3>Casino Night</h3></div>
+      <div class="card-face card-back"><img src="img/10.jpg" alt="Casino Night"></div>
+    </div>
+  </div>
+  <div class="vault card-container">
+    <div class="card">
+      <div class="card-face card-front"><h3>Golden Cat</h3></div>
+      <div class="card-face card-back"><img src="img/11.jpg" alt="Golden Cat"></div>
+    </div>
+  </div>
+  <div class="vault card-container">
+    <div class="card">
+      <div class="card-face card-front"><h3>Epic Win</h3></div>
+      <div class="card-face card-back"><img src="img/12.jpg" alt="Epic Win"></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  &copy; 2025 MeowBet | This is a memecoin. DYOR!
+</footer>
+
+<script>
+
+  // Card flip effect
+  document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('click', function() {
+      this.classList.toggle('flipped');
+    });
+  });
+
+</script>
+
 </body>
 </html>
